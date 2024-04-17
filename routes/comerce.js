@@ -25,7 +25,7 @@ router.post("/webpages", authMiddleware, checkCif, validatorCreateWebpage, creat
 
 router.put("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, validatorCreateWebpage, updateWebpage)
 
-router.delete("/webpages/:cif", authMiddleware, validatorGetComerce, deleteWebpage)
+router.delete("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, deleteWebpage)
 
 
 module.exports = router
