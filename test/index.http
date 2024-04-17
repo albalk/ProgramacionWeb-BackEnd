@@ -1,0 +1,186 @@
+//Ejemplo register
+POST http://localhost:4000/api/auth/register HTTP/1.1
+Content-Type: application/json
+//api_key: Api-publica-123
+
+{
+    "name": "POST1",
+    "email": "POST1@post.com",
+    "password": "POST1",
+    "age": 20,
+    "ciudad": "Madrid",
+    "intereses": ["deportes", "cine"],
+    "recibirOfertas": false
+}
+
+###
+//Ejemplo login
+POST http://localhost:4000/api/auth/login HTTP/1.1
+Content-Type: application/json
+//api_key: Api-publica-123
+
+{
+    "email": "ADMIN@admin.com",
+    "password": "ADMIN"  
+}
+
+###
+//Ejemplo login
+POST http://localhost:4000/api/auth/login HTTP/1.1
+Content-Type: application/json
+//api_key: Api-publica-123
+
+{
+    "email": "POST1@post.com",
+    "password": "POST1"  
+}
+
+###
+//Ejemplo updateUser
+PUT http://localhost:4000/api/users/POST1@post.com HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzMjg1OTQ1LCJleHAiOjE3MTUwMTM5NDV9.cbTQ4kM1-Hx6B9RxTooXqXlENmqTVEOtkPvHpRckJO0
+
+{
+    "name": "POST1_modificado",
+    "ciudad": "Barcelona",
+    "recibirOfertas": false,
+    "intereses": ["deportes", "cine", "teatro"]
+}
+
+###
+//Ejemplo getUsers
+GET http://localhost:4000/api/users HTTP/1.1
+
+###
+//Ejemplo getUser
+GET http://localhost:4000/api/users/POST1@post.com HTTP/1.1
+
+###
+//Ejemplo deleteUser
+DELETE http://localhost:4000/api/users/POST1@post.com HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzMjg1OTQ1LCJleHAiOjE3MTUwMTM5NDV9.cbTQ4kM1-Hx6B9RxTooXqXlENmqTVEOtkPvHpRckJO0
+
+###
+//Ejemplo crear comercio
+POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
+
+{
+    "name": "POSTCOMERCIO3",
+    "cif": "POSTCOMERCIO3",
+    "direccion": "Calle POSTCOMERCIO3, 3",
+    "email": "POSTCOMERCIO3@post.com",
+    "password": "POSTCOMERCIO3",
+    "telefono": "123456789"
+}
+
+###
+//Ejemplo crear comercio
+POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
+
+{
+    "name": "POSTCOMERCIO2",
+    "cif": "POSTCOMERCIO2",
+    "direccion": "Calle POSTCOMERCIO2, 2",
+    "email": "POSTCOMERCIO2@post.com",
+    "password": "POSTCOMERCIO2",
+    "telefono": "234523473"
+}
+
+###
+//Ejemplo login comercio
+POST http://localhost:4000/api/auth/loginComerce HTTP/1.1
+Content-Type: application/json
+//api_key: Api-publica-123
+
+{
+    "email": "POSTCOMERCIO2@post.com",
+    "password": "POSTCOMERCIO2"  
+}
+
+###
+//Ejemplo getComerces
+GET http://localhost:4000/api/comerce HTTP/1.1
+
+###
+//Ejemplo getComerce
+GET http://localhost:4000/api/comerce/POSTCOMERCIO2 HTTP/1.1
+
+###
+//Ejemplo updateComerce (SOLO PARA ADMINS)
+PUT http://localhost:4000/api/comerce/POSTCOMERCIO2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzM3NDY0MywiZXhwIjoxNzE2ODMwNjQzfQ.fRgpTQ0ESZsyA9mPx2ILbQyuEsp18gFGBbfOAT94pys
+
+{
+    "name": "POSTCOMERCIO2_modificado",
+    "direccion": "Calle POSTCOMERCIO2_modificado, 1",
+    "email": "POSTCOMERCIO2_modificado@post.com",
+    "password": "POSTCOMERCIO2_modificado",
+    "telefono": "918273645"
+}
+
+###
+//Ejemplo deleteComerce
+DELETE http://localhost:4000/api/comerce/POSTCOMERCIO1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
+
+###
+//Ejemplo createWebPage
+POST http://localhost:4000/api/comerce/webpages HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc1MDA3LCJleHAiOjE3MTY4MzEwMDd9.HMjhV1fQK-K7DHVfCgYja47ThcNc9pnJOle-3HGkHHc
+
+{
+    "cif": "POSTCOMERCIO2",
+    "webpage": {
+        "ciudad": "Madrid",
+        "actividad": "Tienda de ropa",
+        "titulo": "Mi página web",
+        "resumen": "Bienvenidos a mi página web",
+        "textos": ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
+        "fotos": ["imagen1.jpg", "imagen2.jpg"],
+        "scoring_total": 4.5,
+        "scoring": [5, 4, 4.5],
+        "numPuntuaciones": 3,
+        "reseñas": ["Excelente servicio", "Muy recomendable"]
+    }
+}
+
+###
+//Ejemplo getWebPage
+GET http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
+
+###
+//Ejemplo getWebPage NO FUNCIONA
+GET http://localhost:4000/api/comerce/webpages HTTP/1.1
+
+###
+//Ejemplo updateWebPage
+PUT http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc1MDA3LCJleHAiOjE3MTY4MzEwMDd9.HMjhV1fQK-K7DHVfCgYja47ThcNc9pnJOle-3HGkHHc
+
+{
+    "webpage": {
+        "ciudad": "Barcelona",
+        "actividad": "Tienda de comida",
+        "titulo": "Mi página web",
+        "resumen": "Bienvenidos a mi página web",
+        "textos": ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
+        "fotos": ["imagen1.jpg", "imagen2.jpg"],
+        "scoring_total": 9,
+        "scoring": [0, 50, 2.5],
+        "numPuntuaciones": 3,
+        "reseñas": ["Fatal servicio", "No recomendable"]
+    }
+}
+
+###
+//Ejemplo deleteWebPage
+DELETE http://localhost:4000/api/comerce/webpages/POSTCOMERCIO1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzMjkzMjM5LCJleHAiOjE3MTUwMjEyMzl9.joHn1YfX1Z5COtzzLEdUnjji9EQZQSLgCfr4kj7wJDo
