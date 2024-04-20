@@ -5,12 +5,13 @@ const { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getW
 const authMiddleware = require("../middleware/session")
 const checkRol = require("../middleware/rol")
 const checkCif = require("../middleware/cif")
-const { validatorGetComerce, validatorUpdateComerce, validatorCreateWebpage } = require("../validators/comerce")
+const { validatorGetComerce, validatorUpdateComerce, validatorCreateWebpage, validatorUpdateWebpage } = require("../validators/comerce")
 
 //COMERCIOS (CREAR, MODIFICAR, ELIMINAR Y OBTENER)
+
 router.get("/", getComerces)
 
-router.get("/:cif", validatorGetComerce, getComerce)
+router.get("/merchant/:cif", validatorGetComerce, getComerce)
 
 router.put("/:cif", authMiddleware, checkRol(["admin"]), validatorGetComerce, validatorUpdateComerce, updateComerce)
 
@@ -23,7 +24,7 @@ router.get("/webpages/:cif", validatorGetComerce, getWebpage)
 
 router.post("/webpages", authMiddleware, checkCif, validatorCreateWebpage, createWebpage)
 
-router.put("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, validatorCreateWebpage, updateWebpage)
+router.put("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, validatorUpdateWebpage, updateWebpage)
 
 router.delete("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, deleteWebpage)
 

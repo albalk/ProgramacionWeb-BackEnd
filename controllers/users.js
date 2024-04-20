@@ -1,12 +1,12 @@
-const { usersModel } = require("../models")
+const { usersModel, comerceModel } = require("../models")
 const { matchedData } = require('express-validator')
 const { handleHttpError } = require('../utils/handleError')
 
 const getUsers = async (req, res) => {
     try{
-        const user = req.user
-        const data = await usersModel.find({})
-        res.send({data, user})
+        const comercioRegistrado = await comerceModel.findOne({cif:req.params.cif})
+        const data = await usersModel.find({role:"user", recibirOfertas:true, ciudad:comercioRegistrado.webpage.ciudad })
+        res.send(data)
     }catch(err){
         handleHttpError(res, 'ERROR_GET_ALL_USERS')
     }

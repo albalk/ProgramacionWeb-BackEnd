@@ -1,3 +1,5 @@
+/////////////////////USUARIOS REGISTRADOS/////////////////////
+
 //Ejemplo register
 POST http://localhost:4000/api/auth/register HTTP/1.1
 Content-Type: application/json
@@ -49,8 +51,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzO
 }
 
 ###
-//Ejemplo getUsers
-GET http://localhost:4000/api/users HTTP/1.1
+//Ejemplo getUsers de la misma ciudad y reciben ofertas (solo para comercios)
+GET http://localhost:4000/api/users/POSTCOMERCIO2 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzNjEyMDc1LCJleHAiOjE3MTcwNjgwNzV9.UqLsnXk14FnoFuLOP3_7sPmv7KQUwfjS-eG3n0oqy5A
 
 ###
 //Ejemplo getUser
@@ -62,7 +65,24 @@ DELETE http://localhost:4000/api/users/POST1@post.com HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzMjg1OTQ1LCJleHAiOjE3MTUwMTM5NDV9.cbTQ4kM1-Hx6B9RxTooXqXlENmqTVEOtkPvHpRckJO0
 
 ###
-//Ejemplo crear comercio
+//Ejemplo publicar reseñas
+PUT http://localhost:4000/api/users/reviews/POSTCOMERCIO2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzNDM2MTAyLCJleHAiOjE3MTY4OTIxMDJ9.yw6ia3jVMC4OKyqfoleVdj5vwYov39-RH61xxXEFSQM
+
+{
+    "comercio": "POSTCOMERCIO1",
+    "webpage": {
+        "scoring": 3,
+        "reseñas": "Prueba"
+    }
+}
+
+/////////////////////COMERCIOS/////////////////////
+
+
+###
+//Ejemplo crear comercio (SOLO PARA ADMINS)
 POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
@@ -77,7 +97,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 }
 
 ###
-//Ejemplo crear comercio
+//Ejemplo crear comercio (SOLO PARA ADMINS)
 POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
@@ -108,7 +128,7 @@ GET http://localhost:4000/api/comerce HTTP/1.1
 
 ###
 //Ejemplo getComerce
-GET http://localhost:4000/api/comerce/POSTCOMERCIO2 HTTP/1.1
+GET http://localhost:4000/api/comerce/merchant/POSTCOMERCIO2 HTTP/1.1
 
 ###
 //Ejemplo updateComerce (SOLO PARA ADMINS)
@@ -129,25 +149,25 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 DELETE http://localhost:4000/api/comerce/POSTCOMERCIO1 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
 
+
+//////////////////////////////PAGINAS WEB/////////////////////////
+
+
 ###
 //Ejemplo createWebPage
 POST http://localhost:4000/api/comerce/webpages HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc1MDA3LCJleHAiOjE3MTY4MzEwMDd9.HMjhV1fQK-K7DHVfCgYja47ThcNc9pnJOle-3HGkHHc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzOGZhM2M2NzNkZThjNTQ2ZWVjMGQiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzFAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8xIiwiaWF0IjoxNzEzNjA3MjQ3LCJleHAiOjE3MTcwNjMyNDd9.ZMQtngn9F_MvkgTqLOwoX3jQw0XtoQudS2bBuC3Yr2o
 
 {
-    "cif": "POSTCOMERCIO2",
+    "cif": "POSTCOMERCIO1",
     "webpage": {
         "ciudad": "Madrid",
         "actividad": "Tienda de ropa",
         "titulo": "Mi página web",
         "resumen": "Bienvenidos a mi página web",
-        "textos": ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
-        "fotos": ["imagen1.jpg", "imagen2.jpg"],
-        "scoring_total": 4.5,
-        "scoring": [5, 4, 4.5],
-        "numPuntuaciones": 3,
-        "reseñas": ["Excelente servicio", "Muy recomendable"]
+        "textos": "texto1",
+        "fotos": "imagen1.jpg"
     }
 }
 
@@ -156,8 +176,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxY
 GET http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
 
 ###
-//Ejemplo getWebPage NO FUNCIONA
+//Ejemplo getWebPages
 GET http://localhost:4000/api/comerce/webpages HTTP/1.1
+
+###
+//Ejemplo getWebPages con filtros
+//?order=true
+//?actividad=comida
+//?ciudad=barcelona
+GET http://localhost:4000/api/comerce/webpages?order=true&actividad=ropa&ciudad=madrid HTTP/1.1
 
 ###
 //Ejemplo updateWebPage
@@ -171,12 +198,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxY
         "actividad": "Tienda de comida",
         "titulo": "Mi página web",
         "resumen": "Bienvenidos a mi página web",
-        "textos": ["Lorem ipsum dolor sit amet", "consectetur adipiscing elit"],
-        "fotos": ["imagen1.jpg", "imagen2.jpg"],
-        "scoring_total": 9,
-        "scoring": [0, 50, 2.5],
-        "numPuntuaciones": 3,
-        "reseñas": ["Fatal servicio", "No recomendable"]
+        "textos": "HOLA",
+        "fotos": "imagen4.jpg"
     }
 }
 

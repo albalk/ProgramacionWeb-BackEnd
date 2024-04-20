@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const mongooseDelete = require("mongoose-delete") //importa el borrado logico
 
 //define el esquema del comercio
 const comerceScheme = new mongoose.Schema(
@@ -68,6 +67,4 @@ const comerceScheme = new mongoose.Schema(
     }
 )
 
-//sobrescribe las funciones de borrado para poder usar el borrado logico
-comerceScheme.plugin(mongooseDelete, {overrideMethods: "all"})
 module.exports = mongoose.model("comerce", comerceScheme)

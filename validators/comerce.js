@@ -27,13 +27,29 @@ const validatorCreateWebpage = [
     check("webpage.actividad").exists().notEmpty().isString(),
     check("webpage.titulo").exists().notEmpty().isString(),
     check("webpage.resumen").exists().notEmpty().isString(),
-    check("webpage.textos").exists().isArray(),
-    check("webpage.fotos").exists().isArray(),
-    check("webpage.scoring_total").exists().notEmpty().isFloat(),
-    check("webpage.scoring").exists().isArray(),
-    check("webpage.numPuntuaciones").exists().notEmpty().isInt(),
-    check("webpage.reseñas").exists().isArray(),
+    check("webpage.textos").exists().isString(),
+    check("webpage.fotos").exists().isString(),
     (req, res, next) => validateResults(req, res, next)
 ]
 
-module.exports = { validatorGetComerce, validatorUpdateComerce, validatorCreateWebpage }
+//valida la actualizacion de los datos de una pagina web
+const validatorUpdateWebpage = [
+    check("cif").exists().notEmpty(),
+    check("webpage.ciudad").optional().isString(),
+    check("webpage.actividad").optional().isString(),
+    check("webpage.titulo").optional().isString(),
+    check("webpage.resumen").optional().isString(),
+    check("webpage.textos").optional().isString(),
+    check("webpage.fotos").optional().isString(),
+    (req, res, next) => validateResults(req, res, next)
+]
+
+//valida la publicacion de reseñas
+const validatorUpdateWebpageReviews = [
+    check("cif").exists().notEmpty(),
+    check("webpage.scoring").optional().isNumeric(),
+    check("webpage.reseñas").optional().isString(),
+    (req, res, next) => validateResults(req, res, next)
+]
+
+module.exports = { validatorGetComerce, validatorUpdateComerce, validatorCreateWebpage, validatorUpdateWebpage, validatorUpdateWebpageReviews }

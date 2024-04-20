@@ -7,9 +7,8 @@ const { handleHttpError } = require('../utils/handleError')
 //Listar las paginas web de los comercios
 const getComerces = async (req, res) => {
     try {
-        const comerce = req.comerce
         const data = await comerceModel.find({}) //busca todos los comercios
-        res.send({data, comerce}) //envia la respuesta
+        res.send(data) //envia la respuesta
     }catch(err){
         handleHttpError(res, 'ERROR_GET_ALL_COMERCES', 403)
     }
@@ -50,16 +49,32 @@ const deleteComerce = async (req, res) => {
 //Obtener todas las paginas web
 const getWebpages = async (req, res) => {
     try {
-        const webpage = req.webpage
-        const data = await comerceModel.find({}, { webpage: 1 }, (error, comerces) => {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log(comerces);
-            }
+        let data //como puede tomar valores distintos dependiendo del parametro query, es let en vez de const
         
-        }); //Buscar todos los comercios y devolver solo el campo "webpage"
-        res.send({data, webpage}); //Enviar la respuesta con los datos
+        //variables de filtros
+        const order = req.query.order //ordenar por scoring
+        const actividad = req.query.actividad //filtrar por actividad
+        const ciudad = req.query.ciudad //filtrar por ciudad
+
+        if (order === "true") { //si es true
+            //lista y ordena por el cif de forma ascendente, ignorando las webpage que sean "null"
+            data = await comerceModel.find({ webpage: { $ne: null } }, { webpage: 1 }).sort({ 'webpage.scoring_total': -1})
+        }else if(order !== "true" && order !== undefined){ //si el orden no es true y no es undefined
+            handleHttpError(res, "QUERY_NOT_ALLOWED", 403)
+        }else if (actividad || ciudad) { //si actividad tiene valor
+            data = await comerceModel.find(
+                {
+                    webpage: { $ne: null }, //si el objeto "webpage" no es null
+                    "webpage.actividad": { $regex: new RegExp(actividad, "i") },
+                    "webpage.ciudad": { $regex: new RegExp(ciudad, "i") }
+                },
+                { webpage: 1 } //devuelve solo el campo "webpage" y no el comercio entero
+            );
+        }else{ //si es otra cosa
+            data = await comerceModel.find({ webpage: { $ne: null } }, { webpage: 1 })
+        }
+        
+        res.send(data); //Enviar la respuesta con los datos
     } catch (err) {
         handleHttpError(res, 'ERROR_GET_WEBPAGES', 403); //Manejar el error y enviar una respuesta de error
     }
@@ -69,7 +84,7 @@ const getWebpages = async (req, res) => {
 const getWebpage = async (req, res) => {
     try {
         const { cif } = matchedData(req); //Obtener el CIF del cuerpo de la solicitud
-        const data = await comerceModel.findOne({ cif: cif }, { webpage: 1 }); //Buscar el comercio con el CIF dado y devolver solo el campo "webpage"
+        const data = await comerceModel.findOne({ cif: cif }); //Buscar el comercio con el CIF dado y devolver solo el campo "webpage"
         res.send(data); //Enviar la respuesta con los datos
     } catch (err) {
         handleHttpError(res, 'ERROR_GET_WEBPAGE', 403); //Manejar el error y enviar una respuesta de error
@@ -91,7 +106,15 @@ const createWebpage = async (req, res) => {
 const updateWebpage = async (req, res) => {
     try {
         const { cif, webpage } = matchedData(req);
-        const data = await comerceModel.findOneAndUpdate({ cif: cif }, { webpage: webpage });
+        const data = await comerceModel.findOneAndUpdate(
+            { cif: cif }, { 
+                $push: { //añade el texto al final del array
+                    "webpage.textos": webpage.textos,
+                    "webpage.fotos": webpage.fotos
+                }
+            },
+            { webpage: webpage }
+        );
         res.send(data);
     } catch (err) {
         handleHttpError(res, 'ERROR_UPDATE_WEBPAGE', 403);
@@ -109,5 +132,37 @@ const deleteWebpage = async (req, res) => {
     }
 }
 
+//actualizar las reseñas de un comercio
+const updateWebpageReviews = async (req, res) => {
+    try {
+        
+        const { cif, webpage } = matchedData(req); //Obtener el CIF y los datos de la solicitud
+        
+        const comercio = await comerceModel.findOne({ cif: cif }); //Buscar el comercio con el CIF dado
+        
+        const newScoringTotal = (comercio.webpage.scoring.reduce((a, b) => a + b, 0) + req.body.webpage.scoring) / (comercio.webpage.numPuntuaciones + 1) //Calcular la nueva puntuación total
 
-module.exports = { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, deleteWebpage}
+        const data = await comerceModel.findOneAndUpdate( //Buscar y actualizar el comercio con el CIF dado, estableciendo el campo "webpage" con los datos proporcionados
+            { cif: cif }, 
+            { 
+                $inc: { //incrementa el numero de puntuaciones
+                    "webpage.numPuntuaciones": 1,
+                },
+                $push: { //añade la reseña y puntuacion al final del array
+                    "webpage.scoring": webpage.scoring,
+                    "webpage.reseñas": webpage.reseñas
+                },
+                $set: { //Establecer la nueva puntuación total con el calculo del scoring
+                    "webpage.scoring_total": newScoringTotal
+                }
+            },
+            { new: true }
+        );
+        res.send(data); //Enviar la respuesta con los datos actualizados
+    } catch (err) {
+        handleHttpError(res, 'ERROR_UPDATE_WEBPAGE_REVIEWS', 403); //Manejar el error y enviar una respuesta de error
+    }
+}
+
+
+module.exports = { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, deleteWebpage, updateWebpageReviews }
