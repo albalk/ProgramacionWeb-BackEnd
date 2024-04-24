@@ -33,18 +33,18 @@ Content-Type: application/json
 //api_key: Api-publica-123
 
 {
-    "email": "POST1@post.com",
-    "password": "POST1"  
+    "email": "POST3@post.com",
+    "password": "POST3"  
 }
 
 ###
 //Ejemplo updateUser
-PUT http://localhost:4000/api/users/POST1@post.com HTTP/1.1
+PUT http://localhost:4000/api/users/POST3@post.com HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzMjg1OTQ1LCJleHAiOjE3MTUwMTM5NDV9.cbTQ4kM1-Hx6B9RxTooXqXlENmqTVEOtkPvHpRckJO0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFmZmM4Yjc4NDdkYjllZWJhYjhlMjEiLCJlbWFpbCI6IlBPU1QzQHBvc3QuY29tIiwiaWF0IjoxNzEzOTgyOTczLCJleHAiOjE3MTc0Mzg5NzN9.GsUYuq8Eh6wj-YfOMvjTY7fzEBfkNEnEG2JmTtpObeI
 
 {
-    "name": "POST1_modificado",
+    "name": "POST3_modificado",
     "ciudad": "Barcelona",
     "recibirOfertas": false,
     "intereses": ["deportes", "cine", "teatro"]
@@ -52,12 +52,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzO
 
 ###
 //Ejemplo getUsers de la misma ciudad y reciben ofertas (solo para comercios)
-GET http://localhost:4000/api/users/POSTCOMERCIO2 HTTP/1.1
+GET http://localhost:4000/api/users/interested/POSTCOMERCIO2 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzNjEyMDc1LCJleHAiOjE3MTcwNjgwNzV9.UqLsnXk14FnoFuLOP3_7sPmv7KQUwfjS-eG3n0oqy5A
 
 ###
+//Ejemplo getUsers
+GET http://localhost:4000/api/users HTTP/1.1
+
+###
 //Ejemplo getUser
-GET http://localhost:4000/api/users/POST1@post.com HTTP/1.1
+GET http://localhost:4000/api/users/POST3@post.com HTTP/1.1
 
 ###
 //Ejemplo deleteUser
@@ -73,13 +77,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzO
 {
     "cif": "POSTCOMERCIO2",
     "webpage": {
-        "scoring": 6,
-        "reseñas": "enserio"
+        "scoring": 9,
+        "reseñas": "test"
     }
 }
 
 /////////////////////COMERCIOS/////////////////////
 
+
+###
+//Ejemplo crear comercio (SOLO PARA ADMINS)
+POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzk4NDcwMSwiZXhwIjoxNzE3NDQwNzAxfQ.nYMS_IbMRdtPT1VKt-zlHOyO6hXQLGpi9wcA1qBAXg4
+
+{
+    "name": "POSTCOMERCIO4",
+    "cif": "POSTCOMERCIO4",
+    "direccion": "Calle POSTCOMERCIO4, 4",
+    "email": "POSTCOMERCIO4@post.com",
+    "password": "POSTCOMERCIO4",
+    "telefono": "123456789"
+}
 
 ###
 //Ejemplo crear comercio (SOLO PARA ADMINS)
@@ -93,22 +112,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
     "direccion": "Calle POSTCOMERCIO3, 3",
     "email": "POSTCOMERCIO3@post.com",
     "password": "POSTCOMERCIO3",
-    "telefono": "123456789"
-}
-
-###
-//Ejemplo crear comercio (SOLO PARA ADMINS)
-POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
-
-{
-    "name": "POSTCOMERCIO2",
-    "cif": "POSTCOMERCIO2",
-    "direccion": "Calle POSTCOMERCIO2, 2",
-    "email": "POSTCOMERCIO2@post.com",
-    "password": "POSTCOMERCIO2",
-    "telefono": "234523473"
+    "telefono": "45346735"
 }
 
 ###
@@ -146,8 +150,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 
 ###
 //Ejemplo deleteComerce
-DELETE http://localhost:4000/api/comerce/POSTCOMERCIO1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
+DELETE http://localhost:4000/api/comerce/POSTCOMERCIO4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzk4NDg3OCwiZXhwIjoxNzE3NDQwODc4fQ.0uXthrbk2x6VmExYFbNJYNwEmf953bjcxxlBS3UnNbY
 
 
 //////////////////////////////PAGINAS WEB/////////////////////////

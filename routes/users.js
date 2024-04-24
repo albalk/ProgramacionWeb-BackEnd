@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const { getUsers, getUser, updateUser, deleteUser } = require("../controllers/users")
+const { getUsers, getUser, getInterestedUsers, updateUser, deleteUser } = require("../controllers/users")
 const { validatorUpdateUser, validatorGetUser } = require("../validators/users")
 const { validatorGetComerce, validatorUpdateWebpageReviews } = require("../validators/comerce")
 const { updateWebpageReviews } = require("../controllers/comerce")
@@ -11,28 +11,20 @@ const checkCif = require("../middleware/cif")
 
 /**
  * @openapi
- * /api/users/{cif}:
+ * /api/users:
  *  get:
  *      tags:
  *      - User
- *      summary: Obtener usuarios interesados
- *      description: Obtiene un listado de usuarios que tengan activada la opción de recibir ofertas y que vivan en la misma ciudad que el comercio registrado
- *      parameters:
- *       - in: path
- *         name: cif
- *         schema:
- *           type: string
- *         required: true
+ *      summary: Obtener usuarios
+ *      description: Obtiene un listado de todos los usuarios
  *      responses:
  *          '200': 
  *              description: Devuelve el listado de usuarios
  *          '401':
  *              description: Error al obtener los usuarios 
- *      security:
- *          - bearerAuth: [comerce]
  */
 
-router.get("/:cif", authMiddleware, checkCif, getUsers) //SOLO PARA COMERCIOS REGISTRADOS
+router.get("/", getUsers)
 
 /**
  * @openapi
@@ -58,6 +50,31 @@ router.get("/:cif", authMiddleware, checkCif, getUsers) //SOLO PARA COMERCIOS RE
  */
 
 router.get("/:email", validatorGetUser, getUser)
+
+/**
+ * @openapi
+ * /api/users/{cif}:
+ *  get:
+ *      tags:
+ *      - User
+ *      summary: Obtener usuarios interesados
+ *      description: Obtiene un listado de usuarios que tengan activada la opción de recibir ofertas y que vivan en la misma ciudad que el comercio registrado
+ *      parameters:
+ *       - in: path
+ *         name: cif
+ *         schema:
+ *           type: string
+ *         required: true
+ *      responses:
+ *          '200': 
+ *              description: Devuelve el listado de usuarios
+ *          '401':
+ *              description: Error al obtener los usuarios 
+ *      security:
+ *          - bearerAuth: [comerce]
+ */
+
+router.get("/interested/:cif", authMiddleware, checkCif, getInterestedUsers) //SOLO PARA COMERCIOS REGISTRADOS
 
 /**
  * @openapi

@@ -156,7 +156,7 @@ const updateWebpageReviews = async (req, res) => {
                     "webpage.scoring_total": newScoringTotal
                 }
             },
-            { new: true }
+            { new: true, projection: { cif:1, webpage: 1 }} //projetion hace que solo se devuelva el cif y webpage del comercio
         );
         res.send(data); //Enviar la respuesta con los datos actualizados
     } catch (err) {

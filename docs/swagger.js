@@ -120,14 +120,7 @@ const options = {
                         recibirOfertas: {
                             type: "boolean",
                             example: true
-                        },
-                        role: {
-                            type: "array",
-                            items: {
-                                type: "string"
-                            },
-                            example: ["user"]
-                        },
+                        }
                     },
                 },
                 updateUser: {

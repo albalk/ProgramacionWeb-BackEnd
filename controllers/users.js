@@ -4,8 +4,7 @@ const { handleHttpError } = require('../utils/handleError')
 
 const getUsers = async (req, res) => {
     try{
-        const comercioRegistrado = await comerceModel.findOne({cif:req.params.cif})
-        const data = await usersModel.find({role:"user", recibirOfertas:true, ciudad:comercioRegistrado.webpage.ciudad })
+        const data = await usersModel.find({}) //busca todos los usuarios
         res.send(data)
     }catch(err){
         handleHttpError(res, 'ERROR_GET_ALL_USERS', 401)
@@ -19,6 +18,16 @@ const getUser = async (req, res) => {
         res.send(data)
     }catch(err){
         handleHttpError(res, 'ERROR_GET_USER', 404)
+    }
+}
+
+const getInterestedUsers = async (req, res) => {
+    try{
+        const comercioRegistrado = await comerceModel.findOne({cif:req.params.cif})
+        const data = await usersModel.find({role:"user", recibirOfertas:true, ciudad:comercioRegistrado.webpage.ciudad })
+        res.send(data)
+    }catch(err){
+        handleHttpError(res, 'ERROR_GET_INTERESTED_USERS', 401)
     }
 }
 
@@ -45,4 +54,4 @@ const deleteUser = async (req, res) => {
     }
 }
 
-module.exports = { getUsers, getUser, updateUser, deleteUser }
+module.exports = { getUsers, getUser, getInterestedUsers, updateUser, deleteUser }
