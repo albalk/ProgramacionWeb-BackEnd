@@ -28,3 +28,18 @@ app.use(
     swaggerUi.setup(swaggerSpecs)
 )
 app.use("/api", require("./routes"))
+
+//logs con slack
+const morganBody = require("morgan-body")
+const loggerStream = require("./utils/handleLogger")
+
+//todo lo que pase por app (solo errores de server)
+morganBody(app, {
+    noColors: true, //limpiamos el String de datos lo máximo posible antes de mandarlo a Slack
+    skip: function(req, res) { //Solo enviamos errores (4XX de cliente y 5XX de servidor)
+        return res.statusCode < 400
+    },
+    stream: loggerStream
+})
+
+module.exports = app

@@ -8,7 +8,7 @@ const getUsers = async (req, res) => {
         const data = await usersModel.find({role:"user", recibirOfertas:true, ciudad:comercioRegistrado.webpage.ciudad })
         res.send(data)
     }catch(err){
-        handleHttpError(res, 'ERROR_GET_ALL_USERS')
+        handleHttpError(res, 'ERROR_GET_ALL_USERS', 401)
     }
 }
 
@@ -18,7 +18,7 @@ const getUser = async (req, res) => {
         const data = await usersModel.findOne({email:email})
         res.send(data)
     }catch(err){
-        handleHttpError(res, 'ERROR_GET_USER')
+        handleHttpError(res, 'ERROR_GET_USER', 404)
     }
 }
 
@@ -30,7 +30,7 @@ const updateUser = async (req, res) => {
         const data = await usersModel.findOneAndUpdate({email:email}, body)
         res.send(data)
     }catch(err){
-        handleHttpError(res, 'ERROR_UPDATE_USERS')
+        handleHttpError(res, 'ERROR_UPDATE_USERS', 401)
     }
 }
 
@@ -41,7 +41,7 @@ const deleteUser = async (req, res) => {
         const data = await usersModel.deleteOne({email:email}); //borrado fisico
         res.send(data)
     }catch(err){
-        handleHttpError(res, 'ERROR_DELETE_USERS')
+        handleHttpError(res, 'ERROR_DELETE_USERS', 401)
     }
 }
 

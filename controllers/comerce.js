@@ -20,7 +20,7 @@ const getComerce = async (req, res) => {
         const data = await comerceModel.findOne({cif:cif})
         res.send(data)
     }catch(err){
-        handleHttpError(res, 'ERROR_GET_COMERCE', 403)
+        handleHttpError(res, 'ERROR_GET_COMERCE', 404)
     }
 }
 
@@ -87,7 +87,7 @@ const getWebpage = async (req, res) => {
         const data = await comerceModel.findOne({ cif: cif }); //Buscar el comercio con el CIF dado y devolver solo el campo "webpage"
         res.send(data); //Enviar la respuesta con los datos
     } catch (err) {
-        handleHttpError(res, 'ERROR_GET_WEBPAGE', 403); //Manejar el error y enviar una respuesta de error
+        handleHttpError(res, 'ERROR_GET_WEBPAGE', 404); //Manejar el error y enviar una respuesta de error
     }
 }
 

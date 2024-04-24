@@ -71,10 +71,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzNDM2MTAyLCJleHAiOjE3MTY4OTIxMDJ9.yw6ia3jVMC4OKyqfoleVdj5vwYov39-RH61xxXEFSQM
 
 {
-    "comercio": "POSTCOMERCIO1",
+    "cif": "POSTCOMERCIO2",
     "webpage": {
-        "scoring": 3,
-        "reseñas": "Prueba"
+        "scoring": 6,
+        "reseñas": "enserio"
     }
 }
 
@@ -207,3 +207,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxY
 //Ejemplo deleteWebPage
 DELETE http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc3MTk0LCJleHAiOjE3MTY4MzMxOTR9.OkaoRNPYvSWEcwY0Y627hpgKoTYXEVMzkv2MFdmEM2w
+
+###
+//Prueba SLACK
+// Ejemplo generar error 404
+GET http://localhost:4000/api/error HTTP/1.1
