@@ -110,14 +110,33 @@ const updateWebpage = async (req, res) => {
             { cif: cif }, { 
                 $push: { //añade el texto al final del array
                     "webpage.textos": webpage.textos,
-                    "webpage.fotos": webpage.fotos
+                    //"webpage.fotos": webpage.fotos
                 }
             },
             { webpage: webpage }
-        );
-        res.send(data);
+        )
+        res.send(data)
     } catch (err) {
         handleHttpError(res, 'ERROR_UPDATE_WEBPAGE', 403);
+    }
+}
+
+
+const updloadImage = async (req, res) => {
+    try{
+        const cif = req.params.cif
+        const image = req.file
+        const data = await comerceModel.findOneAndUpdate(
+            { cif: cif }, {
+                $push: {
+                    "webpage.fotos": image.filename
+                }
+            }
+        )
+        res.send(data.webpage)
+    }catch(err){
+        console.log(err)
+        handleHttpError(res, 'ERROR_UPLOAD_IMAGE', 403)
     }
 }
 
@@ -165,4 +184,4 @@ const updateWebpageReviews = async (req, res) => {
 }
 
 
-module.exports = { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, deleteWebpage, updateWebpageReviews }
+module.exports = { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, updloadImage, deleteWebpage, updateWebpageReviews }

@@ -53,7 +53,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFmZmM4Y
 ###
 //Ejemplo getUsers de la misma ciudad y reciben ofertas (solo para comercios)
 GET http://localhost:4000/api/users/interested/POSTCOMERCIO2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzNjEyMDc1LCJleHAiOjE3MTcwNjgwNzV9.UqLsnXk14FnoFuLOP3_7sPmv7KQUwfjS-eG3n0oqy5A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzE0MTQ3MjExLCJleHAiOjE3MTc2MDMyMTF9.zXWSfOsLzHswqyziiH-a0AZWBOsj6J3PnUTQmbzAQnM
 
 ###
 //Ejemplo getUsers
@@ -107,11 +107,11 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzI4ODc5OSwiZXhwIjoxNzE1MDE2Nzk5fQ.2Kz_rlcPgbvS_xSYEXs-VbdFRVCXXCWVlKwoD2Sa-ac
 
 {
-    "name": "POSTCOMERCIO3",
-    "cif": "POSTCOMERCIO3",
-    "direccion": "Calle POSTCOMERCIO3, 3",
-    "email": "POSTCOMERCIO3@post.com",
-    "password": "POSTCOMERCIO3",
+    "name": "COMERCIOTEST",
+    "cif": "COMERCIOTEST",
+    "direccion": "Calle COMERCIOTEST, 3",
+    "email": "COMERCIOTEST@post.com",
+    "password": "COMERCIOTEST",
     "telefono": "45346735"
 }
 
@@ -151,7 +151,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 ###
 //Ejemplo deleteComerce
 DELETE http://localhost:4000/api/comerce/POSTCOMERCIO4 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzk4NDg3OCwiZXhwIjoxNzE3NDQwODc4fQ.0uXthrbk2x6VmExYFbNJYNwEmf953bjcxxlBS3UnNbY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxNDA0ODUwOCwiZXhwIjoxNzE3NTA0NTA4fQ.oIXS_VZKmLOyNnsSkGJQXZBCR_62MMrmVEo431Z-G_E
 
 
 //////////////////////////////PAGINAS WEB/////////////////////////
@@ -161,17 +161,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 //Ejemplo createWebPage
 POST http://localhost:4000/api/comerce/webpages HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzOGZhM2M2NzNkZThjNTQ2ZWVjMGQiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzFAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8xIiwiaWF0IjoxNzEzNjA3MjQ3LCJleHAiOjE3MTcwNjMyNDd9.ZMQtngn9F_MvkgTqLOwoX3jQw0XtoQudS2bBuC3Yr2o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjJiNmZiNDk2M2NkZmFhODFjMWNlY2IiLCJlbWFpbCI6IkNPTUVSQ0lPVEVTVEBwb3N0LmNvbSIsImNpZiI6IkNPTUVSQ0lPVEVTVCIsImlhdCI6MTcxNDEyMzQyMywiZXhwIjoxNzE3NTc5NDIzfQ.o0agJIMUE1F6f-3rCSjcskP4Xm5_lQ82CvxmAWpjDRc
 
 {
-    "cif": "POSTCOMERCIO1",
+    "cif": "COMERCIOTEST",
     "webpage": {
-        "ciudad": "Madrid",
-        "actividad": "Tienda de ropa",
-        "titulo": "Mi página web",
-        "resumen": "Bienvenidos a mi página web",
-        "textos": "texto1",
-        "fotos": "imagen1.jpg"
+        "ciudad": "TEST",
+        "actividad": "TEST",
+        "titulo": "TEST",
+        "resumen": "TEST",
+        "textos": "TEST",
+        "fotos": "TEST.jpg"
     }
 }
 
@@ -209,8 +209,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxY
 
 ###
 //Ejemplo deleteWebPage
-DELETE http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc3MTk0LCJleHAiOjE3MTY4MzMxOTR9.OkaoRNPYvSWEcwY0Y627hpgKoTYXEVMzkv2MFdmEM2w
+DELETE http://localhost:4000/api/comerce/webpages/COMERCIOTEST HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjJiNmZiNDk2M2NkZmFhODFjMWNlY2IiLCJlbWFpbCI6IkNPTUVSQ0lPVEVTVEBwb3N0LmNvbSIsImNpZiI6IkNPTUVSQ0lPVEVTVCIsImlhdCI6MTcxNDEyMzQyMywiZXhwIjoxNzE3NTc5NDIzfQ.o0agJIMUE1F6f-3rCSjcskP4Xm5_lQ82CvxmAWpjDRc
+
+###
+//Ejemplo subir foto
+PUT http://localhost:4000/api/comerce/webpages/upload/POSTCOMERCIO2 HTTP/1.1
+Content-Type: multipart/form-data; boundary=Boundry
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzE0MTQ1MTM1LCJleHAiOjE3MTc2MDExMzV9.MR81sbUYALuzLk3RIWQz0NYeae-QDV4QkLtIKCMA2TA
+
+--Boundry
+Content-Disposition: form-data; name="image"; filename="img.png"
+Content-Type: image/png
+
+< ./img.png
+--Boundry--
+
 
 ###
 //Prueba SLACK

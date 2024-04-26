@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router()
 
-const { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, deleteWebpage} = require("../controllers/comerce")
+const { getComerces, getComerce, updateComerce, deleteComerce, getWebpages, getWebpage, createWebpage, updateWebpage, updloadImage, deleteWebpage} = require("../controllers/comerce")
 const authMiddleware = require("../middleware/session")
 const checkRol = require("../middleware/rol")
 const checkCif = require("../middleware/cif")
 const { validatorGetComerce, validatorUpdateComerce, validatorCreateWebpage, validatorUpdateWebpage } = require("../validators/comerce")
+const uploadMiddleware = require("../utils/handleStorage")
 
 /////////////////////////////////////////////COMERCIOS (CREAR, MODIFICAR, ELIMINAR Y OBTENER)
 
@@ -215,6 +216,40 @@ router.put("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, vali
 
 /**
  * @openapi
+ * /api/comerce/webpages/upload/{cif}:
+ *  put:
+ *      tags:
+ *      - Webpage
+ *      summary: Subir una foto
+ *      description: Sube una foto a la página web de un comercio por su cif
+ *      parameters:
+ *       - in: path
+ *         name: cif
+ *         schema:
+ *           type: string
+ *         required: true
+ *      requestBody:
+ *          content:
+ *              multipart/form-data:
+ *                  schema:
+ *                      type: object
+ *                      properties:
+ *                          image:
+ *                              type: string
+ *      responses:
+ *          '200': 
+ *              description: Imagen subida correctamente
+ *          '403':
+ *              description: Error al subir la imagen
+ *      security:
+ *          - bearerAuth: [comerce]
+ */
+
+router.put("/webpages/upload/:cif", authMiddleware, checkCif, uploadMiddleware.single("image"), updloadImage)
+
+
+/**
+ * @openapi
  * /api/comerce/webpages/{cif}:
  *  delete:
  *      tags:
@@ -237,6 +272,5 @@ router.put("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, vali
  */
 
 router.delete("/webpages/:cif", authMiddleware, checkCif, validatorGetComerce, deleteWebpage)
-
 
 module.exports = router
