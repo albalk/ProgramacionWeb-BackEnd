@@ -27,6 +27,9 @@ const uploadMiddleware = require("../utils/handleStorage")
 
 router.get("/", getComerces)
 
+router.get("/admin", authMiddleware, checkRol(["admin"]), getComerces)
+
+
 /**
  * @openapi
  * /api/comerce/merchant/{cif}:

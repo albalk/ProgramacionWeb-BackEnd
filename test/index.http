@@ -6,9 +6,9 @@ Content-Type: application/json
 //api_key: Api-publica-123
 
 {
-    "name": "POST1",
-    "email": "POST1@post.com",
-    "password": "POST1",
+    "name": "Defensa",
+    "email": "Defensa@post.com",
+    "password": "Defensa",
     "age": 20,
     "ciudad": "Madrid",
     "intereses": ["deportes", "cine"],
@@ -33,27 +33,27 @@ Content-Type: application/json
 //api_key: Api-publica-123
 
 {
-    "email": "POST3@post.com",
-    "password": "POST3"  
+    "email": "Defensa@post.com",
+    "password": "Defensa"  
 }
 
 ###
 //Ejemplo updateUser
-PUT http://localhost:4000/api/users/POST3@post.com HTTP/1.1
+PUT http://localhost:4000/api/users/Defensa@post.com HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFmZmM4Yjc4NDdkYjllZWJhYjhlMjEiLCJlbWFpbCI6IlBPU1QzQHBvc3QuY29tIiwiaWF0IjoxNzEzOTgyOTczLCJleHAiOjE3MTc0Mzg5NzN9.GsUYuq8Eh6wj-YfOMvjTY7fzEBfkNEnEG2JmTtpObeI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGVlODcwYzQzMzdkMmE5YzA1ODMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJpYXQiOjE3MTU2NzE2MDAsImV4cCI6MTcxOTEyNzYwMH0.m8ko8ApVuHslA7-QB4NxMS0oYs_jglUnQ_VscvK7wso
 
 {
     "name": "POST3_modificado",
     "ciudad": "Barcelona",
-    "recibirOfertas": false,
+    "recibirOfertas": true,
     "intereses": ["deportes", "cine", "teatro"]
 }
 
 ###
 //Ejemplo getUsers de la misma ciudad y reciben ofertas (solo para comercios)
-GET http://localhost:4000/api/users/interested/POSTCOMERCIO2 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzE0MTQ3MjExLCJleHAiOjE3MTc2MDMyMTF9.zXWSfOsLzHswqyziiH-a0AZWBOsj6J3PnUTQmbzAQnM
+GET http://localhost:4000/api/users/interested/Defensa HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGM3MzU2M2FmNTQwYTUwNzhjZWMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJjaWYiOiJEZWZlbnNhIiwiaWF0IjoxNzE1NjcwMzU0LCJleHAiOjE3MTkxMjYzNTR9.GdrO-rl5aXwH-8HneMf32YKrbIGH4M76Szo471RB13M
 
 ###
 //Ejemplo getUsers
@@ -70,12 +70,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzO
 
 ###
 //Ejemplo publicar reseñas
-PUT http://localhost:4000/api/users/reviews/POSTCOMERCIO2 HTTP/1.1
+PUT http://localhost:4000/api/users/reviews/Defensa HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzOTVkNDQxNjBlNjQ4Y2MwMmEiLCJlbWFpbCI6IlBPU1QxQHBvc3QuY29tIiwiaWF0IjoxNzEzNDM2MTAyLCJleHAiOjE3MTY4OTIxMDJ9.yw6ia3jVMC4OKyqfoleVdj5vwYov39-RH61xxXEFSQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGVlODcwYzQzMzdkMmE5YzA1ODMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJpYXQiOjE3MTU2NzA4OTQsImV4cCI6MTcxOTEyNjg5NH0.xPtwvX5Ca37DTXSuS8UHDMWdNHYGWjDVEK9GyFpBNQg
 
 {
-    "cif": "POSTCOMERCIO2",
+    "cif": "Defensa",
     "webpage": {
         "scoring": 9,
         "reseñas": "test"
@@ -89,15 +89,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIzO
 //Ejemplo crear comercio (SOLO PARA ADMINS)
 POST http://localhost:4000/api/auth/registerComerce HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxMzk4NDcwMSwiZXhwIjoxNzE3NDQwNzAxfQ.nYMS_IbMRdtPT1VKt-zlHOyO6hXQLGpi9wcA1qBAXg4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxNTY3MDA4NSwiZXhwIjoxNzE5MTI2MDg1fQ.TKsmEkqsbelHDosdsJpSP9HF2hF4rm9UHci9hucfG2w
 
 {
-    "name": "POSTCOMERCIO4",
-    "cif": "POSTCOMERCIO4",
-    "direccion": "Calle POSTCOMERCIO4, 4",
-    "email": "POSTCOMERCIO4@post.com",
-    "password": "POSTCOMERCIO4",
-    "telefono": "123456789"
+    "name": "Defensa",
+    "cif": "Defensa",
+    "direccion": "Calle Defensa, 4",
+    "email": "Defensa@post.com",
+    "password": "Defensa",
+    "telefono": "00000000"
 }
 
 ###
@@ -122,8 +122,8 @@ Content-Type: application/json
 //api_key: Api-publica-123
 
 {
-    "email": "POSTCOMERCIO2@post.com",
-    "password": "POSTCOMERCIO2"  
+    "email": "Defensa@post.com",
+    "password": "Defensa"  
 }
 
 ###
@@ -131,8 +131,15 @@ Content-Type: application/json
 GET http://localhost:4000/api/comerce HTTP/1.1
 
 ###
+//Ejemplo getComerces
+GET http://localhost:4000/api/comerce HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxYzVkNDQxNjBlNjQ4Y2MwMjgiLCJlbWFpbCI6IkFETUlOQGFkbWluLmNvbSIsImlhdCI6MTcxNTY3MDA4NSwiZXhwIjoxNzE5MTI2MDg1fQ.TKsmEkqsbelHDosdsJpSP9HF2hF4rm9UHci9hucfG2w
+
+
+###
 //Ejemplo getComerce
 GET http://localhost:4000/api/comerce/merchant/POSTCOMERCIO2 HTTP/1.1
+
 
 ###
 //Ejemplo updateComerce (SOLO PARA ADMINS)
@@ -161,10 +168,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjFlYWIxY
 //Ejemplo createWebPage
 POST http://localhost:4000/api/comerce/webpages HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjJiNmZiNDk2M2NkZmFhODFjMWNlY2IiLCJlbWFpbCI6IkNPTUVSQ0lPVEVTVEBwb3N0LmNvbSIsImNpZiI6IkNPTUVSQ0lPVEVTVCIsImlhdCI6MTcxNDEyMzQyMywiZXhwIjoxNzE3NTc5NDIzfQ.o0agJIMUE1F6f-3rCSjcskP4Xm5_lQ82CvxmAWpjDRc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGM3MzU2M2FmNTQwYTUwNzhjZWMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJjaWYiOiJEZWZlbnNhIiwiaWF0IjoxNzE1NjcwMzU0LCJleHAiOjE3MTkxMjYzNTR9.GdrO-rl5aXwH-8HneMf32YKrbIGH4M76Szo471RB13M
 
 {
-    "cif": "COMERCIOTEST",
+    "cif": "Defensa",
     "webpage": {
         "ciudad": "TEST",
         "actividad": "TEST",
@@ -192,9 +199,9 @@ GET http://localhost:4000/api/comerce/webpages?order=true&actividad=ropa&ciudad=
 
 ###
 //Ejemplo updateWebPage
-PUT http://localhost:4000/api/comerce/webpages/POSTCOMERCIO2 HTTP/1.1
+PUT http://localhost:4000/api/comerce/webpages/Defensa HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzEzMzc1MDA3LCJleHAiOjE3MTY4MzEwMDd9.HMjhV1fQK-K7DHVfCgYja47ThcNc9pnJOle-3HGkHHc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGM3MzU2M2FmNTQwYTUwNzhjZWMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJjaWYiOiJEZWZlbnNhIiwiaWF0IjoxNzE1NjcwMzU0LCJleHAiOjE3MTkxMjYzNTR9.GdrO-rl5aXwH-8HneMf32YKrbIGH4M76Szo471RB13M
 
 {
     "webpage": {
@@ -214,9 +221,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjJiNmZiN
 
 ###
 //Ejemplo subir foto
-PUT http://localhost:4000/api/comerce/webpages/upload/POSTCOMERCIO2 HTTP/1.1
+PUT http://localhost:4000/api/comerce/webpages/upload/Defensa HTTP/1.1
 Content-Type: multipart/form-data; boundary=Boundry
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwMDcxYTRhZTBmM2I2MjM4NDJmMzEiLCJlbWFpbCI6IlBPU1RDT01FUkNJTzJAcG9zdC5jb20iLCJjaWYiOiJQT1NUQ09NRVJDSU8yIiwiaWF0IjoxNzE0MTQ1MTM1LCJleHAiOjE3MTc2MDExMzV9.MR81sbUYALuzLk3RIWQz0NYeae-QDV4QkLtIKCMA2TA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzMGM3MzU2M2FmNTQwYTUwNzhjZWMiLCJlbWFpbCI6IkRlZmVuc2FAcG9zdC5jb20iLCJjaWYiOiJEZWZlbnNhIiwiaWF0IjoxNzE1NjcwMzU0LCJleHAiOjE3MTkxMjYzNTR9.GdrO-rl5aXwH-8HneMf32YKrbIGH4M76Szo471RB13M
 
 --Boundry
 Content-Disposition: form-data; name="image"; filename="img.png"
